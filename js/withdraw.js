@@ -7,37 +7,49 @@
 // step 7  Equal deposit and current balance
 //step 8 set total balance amount with new deposit
 
-document.getElementById('btn-withdraw').addEventListener('click', function() {
-   
+document.getElementById('btn-withdraw').addEventListener('click', function () {
+
     //step 2
     const NewWithdrawField = document.getElementById('user-withdraw');
     const NewWithdrawAmount = parseFloat(NewWithdrawField.value); // get value from user input with convert string to number
+  
+   //clear the withdraw field
+    NewWithdrawField.value = '';
 
+
+    // check if is input number then work or if is NaN (Not a Number) then return black
+    if(isNaN(NewWithdrawAmount)) {
+        alert('Please provide a valid number');
+        return;
+    }
     //step 3
     const PreviousWithdrawTotalAmount = document.getElementById('total-withdraw');
     const PreviousWithdrawTotal = parseFloat(PreviousWithdrawTotalAmount.innerText); // get value from current withdraw amount with convert string to number
 
-    //Step 4
-    const currentWithdrawTotal = PreviousWithdrawTotal + NewWithdrawAmount;
-    
-    //Set 5
-    PreviousWithdrawTotalAmount.innerText = currentWithdrawTotal; 
 
     //step 06:  
     const previousBalance = document.getElementById('bank-total-balance');
-    const userBalanceAmount = parseFloat(previousBalance.innerText);
+    const previousBalanceAmount = parseFloat(previousBalance.innerText);
+
+    if (NewWithdrawAmount > previousBalanceAmount) {
+        alert('insufficient balance');
+    } else {
+
+        //Step 4
+        const currentWithdrawTotal = PreviousWithdrawTotal + NewWithdrawAmount;
+
+        //Set 5
+        PreviousWithdrawTotalAmount.innerText = currentWithdrawTotal;
+
+        //Step 07: 
+        const newBalanceTotal = previousBalanceAmount - NewWithdrawAmount;
+
+        // Step 08: 
+        previousBalance.innerText = newBalanceTotal;
+    }
 
 
-    //Step 07: 
-    const newBalanceTotal = userBalanceAmount - NewWithdrawAmount;
-
-
-    // Step 08: 
-    previousBalance.innerText = newBalanceTotal;
-
-
-
-   NewWithdrawField.value = '';
+  
 
 
 

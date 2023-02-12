@@ -6,6 +6,15 @@ document.getElementById('btn-deposit').addEventListener('click', function() {
     //get user deposit amount
     const userDepositFiled = document.getElementById('user-deposit');
     const NewDepositAmount = parseFloat(userDepositFiled.value); // get value from user input with convert string to number
+    
+    
+    //clear the deposit field
+    userDepositFiled.value = '';
+    // check if is input number then work or if is NaN (Not a Number) then return black
+    if(isNaN(NewDepositAmount)) {
+        alert('Please provide a valid number');
+        return;
+    }
 
     //Step 3: get the total current deposit amount
     const totalDepositElement = document.getElementById('total-deposit');   
@@ -30,8 +39,7 @@ document.getElementById('btn-deposit').addEventListener('click', function() {
 
 
 
-    //clear the deposit field
-    userDepositFiled.value = '';
+    
    
 
     
